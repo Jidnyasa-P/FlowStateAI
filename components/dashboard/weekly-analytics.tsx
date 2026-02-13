@@ -59,7 +59,7 @@ export function WeeklyAnalytics({ energyData, taskCompletedData }: WeeklyAnalyti
                 borderRadius: '8px',
               }}
             />
-            <Bar dataKey="tasks" fill="#e0f2fe" yAxisId="right" opacity={0.5} />
+            <Bar dataKey="tasks" fill="#e0f2fe" opacity={0.5} />
             <Line
               type="monotone"
               dataKey="energy"

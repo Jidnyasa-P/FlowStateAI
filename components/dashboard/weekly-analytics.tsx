@@ -25,22 +25,30 @@ export function WeeklyAnalytics({ energyData, taskCompletedData }: WeeklyAnalyti
   const minEnergy = Math.min(...energyData);
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6">
-      <h2 className="mb-6 font-semibold text-gray-900">Weekly Analytics</h2>
+    <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h2 className="text-lg font-semibold text-gray-900">Weekly Performance Analytics</h2>
+          <p className="mt-1 text-sm text-gray-600">7-day cognitive energy and task completion trends</p>
+        </div>
+      </div>
 
       {/* Stats */}
-      <div className="mb-6 grid grid-cols-3 gap-3">
-        <div className="rounded-lg bg-blue-50 p-3">
+      <div className="mb-8 grid grid-cols-3 gap-4">
+        <div className="rounded-lg bg-blue-50 p-4">
           <p className="text-xs font-semibold text-gray-600">Avg Energy</p>
-          <p className="mt-1 text-2xl font-bold text-blue-600">{avgEnergy}</p>
+          <p className="mt-2 text-3xl font-bold text-blue-600">{avgEnergy}</p>
+          <p className="text-xs text-gray-500 mt-1">/100</p>
         </div>
-        <div className="rounded-lg bg-green-50 p-3">
+        <div className="rounded-lg bg-green-50 p-4">
           <p className="text-xs font-semibold text-gray-600">Peak Energy</p>
-          <p className="mt-1 text-2xl font-bold text-green-600">{Math.round(maxEnergy)}</p>
+          <p className="mt-2 text-3xl font-bold text-green-600">{Math.round(maxEnergy)}</p>
+          <p className="text-xs text-gray-500 mt-1">highest</p>
         </div>
-        <div className="rounded-lg bg-amber-50 p-3">
+        <div className="rounded-lg bg-amber-50 p-4">
           <p className="text-xs font-semibold text-gray-600">Low Energy</p>
-          <p className="mt-1 text-2xl font-bold text-amber-600">{Math.round(minEnergy)}</p>
+          <p className="mt-2 text-3xl font-bold text-amber-600">{Math.round(minEnergy)}</p>
+          <p className="text-xs text-gray-500 mt-1">lowest</p>
         </div>
       </div>
 

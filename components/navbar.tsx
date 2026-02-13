@@ -16,9 +16,11 @@ export function Navbar() {
     router.push('/');
   };
 
+  const userName = session?.email?.split('@')[0] || 'User';
+
   return (
     <nav className="border-b border-gray-200 bg-white">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
@@ -31,12 +33,32 @@ export function Navbar() {
             FlowState
           </Link>
 
+          {/* Center - Greeting and Mode Badge */}
+          {!isGuest && (
+            <div className="hidden items-center gap-4 md:flex">
+              <span className="text-sm font-medium text-gray-900">
+                Welcome back, {userName.charAt(0).toUpperCase() + userName.slice(1)} 👋
+              </span>
+              <span className="inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800">
+                Authenticated
+              </span>
+            </div>
+          )}
+
+          {isGuest && (
+            <div className="hidden items-center gap-4 md:flex">
+              <span className="inline-flex rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800">
+                Guest Mode
+              </span>
+            </div>
+          )}
+
           {/* Desktop Menu */}
-          <div className="hidden items-center gap-8 md:flex">
-            <Link href="/" className="text-gray-600 hover:text-gray-900">
+          <div className="hidden items-center gap-6 md:flex">
+            <Link href="/" className="text-gray-600 hover:text-gray-900 text-sm">
               Home
             </Link>
-            <Link href="/dashboard" className="text-gray-600 hover:text-gray-900">
+            <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 text-sm">
               Dashboard
             </Link>
 
@@ -44,23 +66,22 @@ export function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100"
+                  className="rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 text-sm"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/signup"
-                  className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+                  className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 text-sm"
                 >
                   Sign Up
                 </Link>
               </>
             ) : (
               <>
-                <span className="text-sm text-gray-600">{session?.email}</span>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100"
+                  className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100 text-sm"
                 >
                   <LogOut className="h-4 w-4" />
                   Logout

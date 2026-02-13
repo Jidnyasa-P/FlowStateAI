@@ -5,12 +5,15 @@ import { useState, useCallback } from 'react';
 export interface Task {
   id: string;
   title: string;
+  name?: string; // Alias for title
   description?: string;
   status: 'active' | 'paused' | 'completed' | 'failed';
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'medium' | 'hard' | 'Low Load' | 'Moderate Load' | 'High Load';
+  progress?: number; // 0-1
   timeSpent: number; // in seconds
   createdAt: Date;
   completedAt?: Date;
+  failedAt?: Date;
   errorCount: number;
 }
 
@@ -57,7 +60,7 @@ export function useTasks(initialTasks?: Task[]) {
     setTasks((prev) =>
       prev.map((task) =>
         task.id === id
-          ? { ...task, status: 'failed', completedAt: new Date() }
+          ? { ...task, status: 'failed', failedAt: new Date() }
           : task
       )
     );

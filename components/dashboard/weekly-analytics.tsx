@@ -1,6 +1,6 @@
 'use client';
 
-import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface WeeklyAnalyticsProps {
   energyData: number[];
@@ -56,7 +56,7 @@ export function WeeklyAnalytics({ energyData, taskCompletedData }: WeeklyAnalyti
       <div className="mb-6">
         <p className="mb-3 text-sm font-semibold text-gray-900">Energy Trend</p>
         <ResponsiveContainer width="100%" height={300}>
-          <ComposedChart data={displayData}>
+          <LineChart data={displayData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
             <XAxis dataKey="day" stroke="#6b7280" />
             <YAxis stroke="#6b7280" domain={[0, 100]} />
@@ -67,7 +67,6 @@ export function WeeklyAnalytics({ energyData, taskCompletedData }: WeeklyAnalyti
                 borderRadius: '8px',
               }}
             />
-            <Bar dataKey="tasks" fill="#e0f2fe" opacity={0.5} />
             <Line
               type="monotone"
               dataKey="energy"
@@ -76,7 +75,7 @@ export function WeeklyAnalytics({ energyData, taskCompletedData }: WeeklyAnalyti
               dot={{ fill: '#3b82f6', r: 4 }}
               activeDot={{ r: 6 }}
             />
-          </ComposedChart>
+          </LineChart>
         </ResponsiveContainer>
       </div>
 
